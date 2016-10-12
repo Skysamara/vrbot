@@ -9,4 +9,11 @@ package ru.panorobot.vrbot;
  *
  */
 public class VRManager {
+    private VRSurfaceView vrSurfaceView;
+
+
+    public VRManager(VRSurfaceView vrSurfaceView) {
+        this.vrSurfaceView = vrSurfaceView;
+        this.vrSurfaceView.showMessage("!@!");
+    }
 }

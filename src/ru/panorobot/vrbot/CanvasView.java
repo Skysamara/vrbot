@@ -15,6 +15,9 @@ public class CanvasView extends View implements ICanvasView{
     private static int width;
     private static int height;
 //    private GameManager gameManager;
+    private SurfaceView preview; // TODO: 23.09.2016 Удалить
+    private SurfaceHolder surfaceHolder; // TODO: 23.09.2016 Удалить
+
     private Paint paint;
     private Canvas canvas;
     private Toast toast;
@@ -46,6 +49,11 @@ public class CanvasView extends View implements ICanvasView{
         super.onDraw(canvas);
         this.canvas = canvas;
 //        gameManager.onDraw();
+        showMessage("Wow!");
+
+//        preview = (SurfaceView) findViewById(R.layout.vrlayout);
+//
+//        surfaceHolder = preview.getHolder();
     }
 
 //    @Override
@@ -79,4 +87,5 @@ public class CanvasView extends View implements ICanvasView{
         invalidate();
         return true;
     }
+
 }
