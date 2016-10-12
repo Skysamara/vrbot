@@ -1,0 +1,8 @@
+- В манифесте VRActivity
+- VRActivity - setContentView(R.layout.vrlayout);
+- vrlayout - VRSurfaceView
+- В конструкторе VRSurfaceView создается vrManager = new VRManager(this)
+    и ему передается ссылка на сам vrSurfaceView
+
+- В конструкторе vrManager вызывается метод VRSurfaceView, показывающий тост
+12.10.2016 Это работает, ссылка на VRSurfaceView получена!
