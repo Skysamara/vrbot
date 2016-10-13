@@ -10,9 +10,7 @@ import android.view.Window;
 
 import java.io.IOException;
 
-/**
- * Created by ysv on 25.08.2016.
- */
+
 public class VRActivity extends Activity{
 
     @Override

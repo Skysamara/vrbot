@@ -6,7 +6,6 @@ import android.view.SurfaceHolder;
 import java.io.IOException;
 
 /**
- * Created by ysv on 25.08.2016.
  * 1. Открывает главное окно с кнопкой Старнт
  * 2. При нажатии на Старт запускается съемка
  * 2.1. Перемещение головки, отлавливание окончания
@@ -21,10 +20,11 @@ public class VRManager {
 
     public VRManager(VRSurfaceView vrSurfaceView) {
         this.vrSurfaceView = vrSurfaceView;
-        vrSurfaceView.showMessage("!@!");
 
         surfaceHolder = vrSurfaceView.getHolder();
+    }
 
+    public void openCamera() {
         camera = Camera.open();
         try {
             camera.setPreviewDisplay(surfaceHolder);
@@ -35,6 +35,6 @@ public class VRManager {
         }
 
         camera.startPreview();
-
+//        vrSurfaceView.showMessage("startPreview");
     }
 }
