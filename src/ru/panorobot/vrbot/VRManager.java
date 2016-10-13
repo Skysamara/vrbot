@@ -1,5 +1,10 @@
 package ru.panorobot.vrbot;
 
+import android.hardware.Camera;
+import android.view.SurfaceHolder;
+
+import java.io.IOException;
+
 /**
  * Created by ysv on 25.08.2016.
  * 1. Открывает главное окно с кнопкой Старнт
@@ -10,10 +15,26 @@ package ru.panorobot.vrbot;
  */
 public class VRManager {
     private VRSurfaceView vrSurfaceView;
+    private SurfaceHolder surfaceHolder;
+    private Camera camera;
 
 
     public VRManager(VRSurfaceView vrSurfaceView) {
         this.vrSurfaceView = vrSurfaceView;
-        this.vrSurfaceView.showMessage("!@!");
+        vrSurfaceView.showMessage("!@!");
+
+        surfaceHolder = vrSurfaceView.getHolder();
+
+        camera = Camera.open();
+        try {
+            camera.setPreviewDisplay(surfaceHolder);
+            vrSurfaceView.showMessage("Камера подключена");
+        } catch (IOException e) {
+            e.printStackTrace();
+            vrSurfaceView.showMessage("Ошибка камеры");
+        }
+
+        camera.startPreview();
+
     }
 }
