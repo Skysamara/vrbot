@@ -5,9 +5,10 @@ import android.graphics.Canvas;
 import android.graphics.Point;
 import android.util.AttributeSet;
 import android.view.*;
+import android.view.View.OnTouchListener;
 import android.widget.Toast;
 
-public class VRSurfaceView extends SurfaceView implements SurfaceHolder.Callback{
+public class VRSurfaceView extends SurfaceView implements SurfaceHolder.Callback, OnTouchListener{
 //    private static int width;
 //    private static int height;
     private Toast toast;
@@ -69,4 +70,22 @@ public class VRSurfaceView extends SurfaceView implements SurfaceHolder.Callback
     public void surfaceDestroyed(SurfaceHolder holder) {
 
     }
+
+
+    /**
+     * Called when a touch event is dispatched to a view. This allows listeners to
+     * get a chance to respond before the target view.
+     *
+     * @param v     The view the touch event has been dispatched to.
+     * @param event The MotionEvent object containing full information about
+     *              the event.
+     * @return True if the listener has consumed the event, false otherwise.
+     */
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+        showMessage("Touch!");
+//        vrManager.Shot();
+        return false;
+    }
+
 }
