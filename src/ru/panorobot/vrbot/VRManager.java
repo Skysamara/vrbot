@@ -30,10 +30,10 @@ public class VRManager implements Camera.PictureCallback{
         camera = Camera.open();
         try {
             camera.setPreviewDisplay(surfaceHolder);
-            vrSurfaceView.showMessage("Камера подключена");
+//            vrSurfaceView.showMessage("Камера подключена");
         } catch (IOException e) {
             e.printStackTrace();
-            vrSurfaceView.showMessage("Ошибка камеры");
+//            vrSurfaceView.showMessage("Ошибка камеры");
         }
 
         camera.startPreview();

@@ -8,7 +8,7 @@ import android.view.*;
 import android.view.View.OnTouchListener;
 import android.widget.Toast;
 
-public class VRSurfaceView extends SurfaceView implements SurfaceHolder.Callback, OnTouchListener{
+public class VRSurfaceView extends SurfaceView implements SurfaceHolder.Callback, View.OnClickListener{
 //    private static int width;
 //    private static int height;
     private Toast toast;
@@ -16,7 +16,7 @@ public class VRSurfaceView extends SurfaceView implements SurfaceHolder.Callback
     private VRManager vrManager;
 
 
-    public VRSurfaceView(Context context, AttributeSet attrs) {
+    public VRSurfaceView(Context context) {
         super(context);
         getHolder().addCallback(this);
 //        initWidthAndHeight(context);
@@ -33,30 +33,9 @@ public class VRSurfaceView extends SurfaceView implements SurfaceHolder.Callback
         toast.show();
     }
 
-//    @Override
-//    protected void onDraw(Canvas canvas) {
-//        super.onDraw(canvas);
-//        this.canvas = canvas;
-//        showMessage("Wow. VRSurfaceView!");
-//    }
-
-//    private void initWidthAndHeight(Context context) {
-//        WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
-//        Display display = windowManager.getDefaultDisplay();
-//        Point point = new Point();
-//        display.getSize(point);
-//        width = point.x;
-//        height = point.y;
-//    }
-
-//    @Override
-//    public void redraw() {
-//        invalidate();
-//    }
-
-
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
+//        showMessage("surfaceCreated");
         vrManager.openCamera();
 
     }
@@ -71,21 +50,8 @@ public class VRSurfaceView extends SurfaceView implements SurfaceHolder.Callback
 
     }
 
-
-    /**
-     * Called when a touch event is dispatched to a view. This allows listeners to
-     * get a chance to respond before the target view.
-     *
-     * @param v     The view the touch event has been dispatched to.
-     * @param event The MotionEvent object containing full information about
-     *              the event.
-     * @return True if the listener has consumed the event, false otherwise.
-     */
     @Override
-    public boolean onTouch(View v, MotionEvent event) {
-        showMessage("Touch!");
-//        vrManager.Shot();
-        return false;
+    public void onClick(View v) {
+        showMessage("onClick");
     }
-
 }

@@ -12,11 +12,15 @@ import java.io.IOException;
 
 
 public class VRActivity extends Activity{
+    VRSurfaceView vrSurfaceView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        vrSurfaceView = new VRSurfaceView(this);
+        vrSurfaceView.setOnClickListener(vrSurfaceView);
+
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.vrlayout);
+        setContentView(vrSurfaceView);
     }
 }
