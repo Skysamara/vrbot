@@ -21,7 +21,6 @@ public class VRSurfaceView extends SurfaceView implements SurfaceHolder.Callback
         getHolder().addCallback(this);
 //        initWidthAndHeight(context);
         vrManager = new VRManager(this);
-
     }
 
     public void showMessage(String text) {
@@ -36,6 +35,7 @@ public class VRSurfaceView extends SurfaceView implements SurfaceHolder.Callback
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
 //        showMessage("surfaceCreated");
+        setOnClickListener(this);
         vrManager.openCamera();
 
     }
