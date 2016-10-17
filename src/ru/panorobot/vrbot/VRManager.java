@@ -40,18 +40,10 @@ public class VRManager implements Camera.PictureCallback{
 //        vrSurfaceView.showMessage("startPreview");
     }
 
-    public void Shot() {
+    public void shot() {
         camera.takePicture(null, null, null, this);
     }
 
-    /**
-     * Called when image data is available after a picture is taken.
-     * The format of the data depends on the context of the callback
-     * and {@link Camera.Parameters} settings.
-     *
-     * @param data   a byte array of the picture data
-     * @param camera the Camera service object
-     */
     @Override
     public void onPictureTaken(byte[] data, Camera camera) {
         try {
@@ -64,8 +56,9 @@ public class VRManager implements Camera.PictureCallback{
 
             FileOutputStream os = new FileOutputStream(String.format("/sdcard/vrbot/%d.jpg", System.currentTimeMillis()));
             os.write(data);
-            vrSurfaceView.showMessage(os.getFD().toString());
+//            vrSurfaceView.showMessage(os.getFD().toString());
             os.close();
+            vrSurfaceView.showMessage("Снято!");
 
         } catch (Exception e) {
             e.printStackTrace();

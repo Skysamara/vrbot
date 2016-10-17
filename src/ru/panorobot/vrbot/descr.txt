@@ -1,5 +1,5 @@
 - В манифесте VRActivity
-- VRActivity - setContentView(R.layout.vrlayout);
+- VRActivity - setContentView(R.layout.vrlayout); ( изменено на vrSurfaceView = new VRSurfaceView(this); 17.10.2016)
 - vrlayout - VRSurfaceView
 - В конструкторе VRSurfaceView создается vrManager = new VRManager(this)
     и ему передается ссылка на сам vrSurfaceView
@@ -10,3 +10,16 @@
 13.10.2016 vrManager стартует камеру без ошибок, но пока ничего не выводится на экран
 В VRSurfaceView добавил коллбэк.
 При surfaceCreated вызывается открытие камеры в Менеджере
+
+17.10.2016
+    vrlayout не нужен
+    В VRActivity создается экземпляр VrSurfaceView с обработчиком клика
+    В методе onClick VrSurfaceView вызывается метод shot Менеджера
+
+Приложение работает и занимает ресурсы пока оно на экране, поэтому в VRActivity нужно:
+- Создавать и подклчать Wi-Fi или синий зуб
+- Камеру
+- что-то еще, хранимое на все время работы программы
+- освобождать все ресурсы
+
+
