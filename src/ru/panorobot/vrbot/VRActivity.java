@@ -18,7 +18,7 @@ public class VRActivity extends Activity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         vrSurfaceView = new VRSurfaceView(this);
-//        vrSurfaceView.setOnClickListener(vrSurfaceView);
+//        vrSurfaceView.setOnClickListener(vrSurfaceView); // Так тоже работает
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(vrSurfaceView);
