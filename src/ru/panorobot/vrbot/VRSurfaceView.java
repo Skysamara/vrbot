@@ -9,8 +9,6 @@ import android.view.View.OnTouchListener;
 import android.widget.Toast;
 
 public class VRSurfaceView extends SurfaceView implements SurfaceHolder.Callback, View.OnClickListener{
-//    private static int width;
-//    private static int height;
     private Toast toast;
     private Canvas canvas;
     private VRManager vrManager;
@@ -19,7 +17,6 @@ public class VRSurfaceView extends SurfaceView implements SurfaceHolder.Callback
     public VRSurfaceView(Context context) {
         super(context);
         getHolder().addCallback(this);
-//        initWidthAndHeight(context);
         vrManager = new VRManager(this);
     }
 
@@ -34,10 +31,8 @@ public class VRSurfaceView extends SurfaceView implements SurfaceHolder.Callback
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
-//        showMessage("surfaceCreated");
         setOnClickListener(this);
         vrManager.openCamera();
-
     }
 
     @Override
@@ -52,7 +47,7 @@ public class VRSurfaceView extends SurfaceView implements SurfaceHolder.Callback
 
     @Override
     public void onClick(View v) {
-//        showMessage("onClick");
-        vrManager.shot();
+//        vrManager.shot();
+        // TODO: 20.10.2016 !!!!!! 
     }
 }

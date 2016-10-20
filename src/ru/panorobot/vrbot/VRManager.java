@@ -19,32 +19,31 @@ import java.util.Date;
 public class VRManager implements Camera.PictureCallback{
     private VRSurfaceView vrSurfaceView;
     private SurfaceHolder surfaceHolder;
-    private Camera camera;
+//    private Camera camera;
+    private VRCamera vrCamera;
 
 
     public VRManager(VRSurfaceView vrSurfaceView) {
         this.vrSurfaceView = vrSurfaceView;
-
         surfaceHolder = vrSurfaceView.getHolder();
     }
 
     public void openCamera() {
-        camera = Camera.open();
-        try {
-            camera.setPreviewDisplay(surfaceHolder);
-//            vrSurfaceView.showMessage("Камера подключена");
-        } catch (IOException e) {
-            e.printStackTrace();
-//            vrSurfaceView.showMessage("Ошибка камеры");
-        }
-
-        camera.startPreview();
-//        vrSurfaceView.showMessage("startPreview");
+//        camera = Camera.open();
+//        try {
+//            camera.setPreviewDisplay(surfaceHolder);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//
+//        camera.startPreview();
+        vrCamera.open();
     }
 
-    public void shot() {
-        camera.takePicture(null, null, null, this);
-    }
+//    public void shot() {
+//        camera.takePicture(null, null, null, this);
+//    }
+    // TODO: 20.10.2016 !!! 
 
     @Override
     public void onPictureTaken(byte[] data, Camera camera) {
@@ -56,15 +55,12 @@ public class VRManager implements Camera.PictureCallback{
                 // TODO: 22.09.2016 Warning:(197, 25) Result of 'File.mkdirs()' is ignored
             }
 
-//            FileOutputStream os = new FileOutputStream(String.format("/sdcard/vrbot/%d.jpg", System.currentTimeMillis()));
             String fileName = new SimpleDateFormat("yyyy.MM.dd_HH-mm-ss").format(new Date());
             fileName = fileName + ".jpg";
             fileName = "/sdcard/vrbot/" + fileName;
 
-//            FileOutputStream os = new FileOutputStream(String.format("/sdcard/vrbot/%d.jpg", System.currentTimeMillis()));
             FileOutputStream os = new FileOutputStream(fileName);
             os.write(data);
-//            vrSurfaceView.showMessage(os.getFD().toString());
             os.close();
             vrSurfaceView.showMessage("Снято!");
 
