@@ -47,7 +47,6 @@ public class VRSurfaceView extends SurfaceView implements SurfaceHolder.Callback
 
     @Override
     public void onClick(View v) {
-//        vrManager.shot();
-        // TODO: 20.10.2016 !!!!!! 
+        vrManager.shot();
     }
 }
