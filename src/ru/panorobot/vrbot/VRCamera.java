@@ -33,24 +33,11 @@ public class VRCamera implements PictureCallback{
 
     @Override
     public void onPictureTaken(byte[] data, Camera camera) {
-        try {
-            File saveDir = new File("/sdcard/vrbot/");
 
-            if (!saveDir.exists()) {
-                saveDir.mkdirs();
-            }
-
-            String fileName = new SimpleDateFormat("yyyy.MM.dd_HH-mm-ss").format(new Date());
-            fileName = fileName + ".jpg";
-            fileName = "/sdcard/vrbot/" + fileName;
-
-            FileOutputStream os = new FileOutputStream(fileName);
-            os.write(data);
-            os.close();
+        if (VRFile.saveVRfile(data)){
             vrSurfaceView.showMessage("Снято!");
-
-        } catch (Exception e) {
-            e.printStackTrace();
+        }
+        else {
             vrSurfaceView.showMessage("Dir fail!");
         }
 
