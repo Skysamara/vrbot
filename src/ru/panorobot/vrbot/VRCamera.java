@@ -11,9 +11,20 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class VRCamera implements PictureCallback{
+    interface VRCallback{
+        void callBackReturn();
+    }
+
+    VRCallback vrCallback;
+
+
     public static Camera camera;
     private VRSurfaceView vrSurfaceView;
     private SurfaceHolder surfaceHolder;
+
+    void registerCallback(VRCallback callback){
+        this.vrCallback = callback;
+    }
 
     public VRCamera(VRSurfaceView vrSurfaceView) {
         this.vrSurfaceView = vrSurfaceView;
@@ -42,6 +53,7 @@ public class VRCamera implements PictureCallback{
         }
 
         camera.startPreview();
+        vrCallback.callBackReturn();
     }
 
     public void shot(){
