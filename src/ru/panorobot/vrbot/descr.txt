@@ -24,3 +24,7 @@
 
 
 TODO Написать класс VRBot с интерфейсом onMoved. Вызывать его, когда перемещение завершено.
+
+28.10.2016 Как-то надо сообщать окну, что съемка кадра закончена. Видимо, нужно сделать
+коллбэк у VRCamera или у VRManager
+http://developer.alexanderklimov.ru/android/java/interface.php
