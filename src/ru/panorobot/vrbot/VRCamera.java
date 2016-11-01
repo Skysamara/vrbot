@@ -59,4 +59,5 @@ public class VRCamera implements PictureCallback{
     public void shot(){
         camera.takePicture(null, null,null,this);
     }
+
 }
