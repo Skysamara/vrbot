@@ -16,7 +16,7 @@ import java.util.Date;
  * 2.2. Съемка
  *
  */
-public class VRManager{
+public class VRManager implements VRCamera.VRCallback{
     private VRSurfaceView vrSurfaceView;
     private SurfaceHolder surfaceHolder;
     private VRCamera vrCamera;
@@ -30,9 +30,20 @@ public class VRManager{
     public void openCamera() {
         vrCamera = new VRCamera(vrSurfaceView);
         vrCamera.open();
+        vrCamera.registerCallback(this);
     }
 
     public void shot() {
         vrCamera.shot();
+    }
+    
+    // Вызызвается VRCamera после окончания записи кадра на флешку
+    public void onShotFinish() {
+        
+    }
+
+    @Override
+    public void callBackReturn() {
+        vrSurfaceView.showMessage("Callback!");
     }
 }
