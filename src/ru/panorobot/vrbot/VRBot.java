@@ -5,12 +5,27 @@ import android.util.Log;
 import android.widget.Toast;
 
 /**
- * Created by ysv on 07.04.2016.
  * Интерфейс к головке.
- * По BT передаем напрмвления вращений. Формат комманд:
+ * По BT передаем направления вращениz. Формат комманд:
  * #pXX -
  */
 public class VRBot implements Runnable{
+    public interface VRMove {
+        void onVRBotMoveComplete();
+    }
+
+    interface VRBotConnect{
+        void onVRBotConnected();
+    }
+
+
+
+    VRMove onVRMoveComplete;
+
+    void registerCallback(VRMove onVRMoveComplete){
+        this.onVRMoveComplete = onVRMoveComplete;
+    }
+
     @Override
     public void run() {
 //        Toast.makeText(this, "Подключаем робота", Toast.LENGTH_SHORT).show();
@@ -31,6 +46,10 @@ public class VRBot implements Runnable{
          * #x - команда (Подключить, отключить, переместить, узнать заряд и т.д.)
          * YY - аргумент
          */
+    }
+
+    public void connect(){
+        // Подключаем Bluetooth
     }
 
 

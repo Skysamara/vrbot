@@ -4,26 +4,22 @@ import android.hardware.Camera;
 import android.hardware.Camera.PictureCallback;
 import android.view.SurfaceHolder;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class VRCamera implements PictureCallback{
-    interface VRCallback{
+    interface VRShotComplete {
         void callBackReturn();
     }
 
-    VRCallback vrCallback;
+    VRShotComplete vrShotComplete;
 
 
     public static Camera camera;
     private VRSurfaceView vrSurfaceView;
     private SurfaceHolder surfaceHolder;
 
-    void registerCallback(VRCallback callback){
-        this.vrCallback = callback;
+    void registerCallback(VRShotComplete vrShotComplete){
+        this.vrShotComplete = vrShotComplete;
     }
 
     public VRCamera(VRSurfaceView vrSurfaceView) {
@@ -53,7 +49,7 @@ public class VRCamera implements PictureCallback{
         }
 
         camera.startPreview();
-        vrCallback.callBackReturn();
+        vrShotComplete.callBackReturn();
     }
 
     public void shot(){
