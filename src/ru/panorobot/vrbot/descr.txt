@@ -28,3 +28,7 @@ TODO Написать класс VRBot с интерфейсом onMoved. Выз
 28.10.2016 Как-то надо сообщать окну, что съемка кадра закончена. Видимо, нужно сделать
 коллбэк у VRCamera или у VRManager
 http://developer.alexanderklimov.ru/android/java/interface.php
+
+10.11.2016 Вызов камеры через интент и сохранение картинки (посмотреть)
+onActivityResult()
+https://youtu.be/k1Wc0vmD284?t=5m4s

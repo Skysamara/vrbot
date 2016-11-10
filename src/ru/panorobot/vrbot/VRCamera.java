@@ -55,4 +55,7 @@ public class VRCamera implements PictureCallback{
     public void shot(){
         camera.takePicture(null, null,null,this);
     }
+
+    // TODO: 10.11.2016  https://youtu.be/k1Wc0vmD284?list=PL6gx4Cwl9DGBsvRxJJOzG4r4k_zLKrnxl
+    // Проверка наличия камеры
 }
