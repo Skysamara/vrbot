@@ -38,5 +38,7 @@ public class VRManager implements VRCamera.VRShotComplete {
     @Override
     public void callBackReturn() {
         vrSurfaceView.showMessage("Callback!");
+
+
     }
 }
