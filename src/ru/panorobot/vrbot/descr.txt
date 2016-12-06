@@ -32,3 +32,12 @@ http://developer.alexanderklimov.ru/android/java/interface.php
 10.11.2016 Вызов камеры через интент и сохранение картинки (посмотреть)
 onActivityResult()
 https://youtu.be/k1Wc0vmD284?t=5m4s
+
+05.12.2016
+    enum VRCommand {
+        VR_UP;
+        VR_DOWN;
+        /// и т.д.
+    }
+
+    Посмотреть Наблюдатель (шаблон проектирования)

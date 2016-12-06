@@ -7,6 +7,8 @@ import android.view.SurfaceHolder;
 import java.io.IOException;
 
 public class VRCamera implements PictureCallback{
+
+
     interface VRShotComplete {
         void callBackReturn();
     }
@@ -24,18 +26,24 @@ public class VRCamera implements PictureCallback{
 
     public VRCamera(VRSurfaceView vrSurfaceView) {
         this.vrSurfaceView = vrSurfaceView;
-        surfaceHolder = vrSurfaceView.getHolder();
-        camera = Camera.open();
+//        surfaceHolder = vrSurfaceView.getHolder();
+//        camera = Camera.open();
+    }
+
+    public void releaseCamera() {
+        camera.release();
     }
 
     public void open(){
-        try {
-            camera.setPreviewDisplay(surfaceHolder);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        camera.startPreview();
+        camera = Camera.open(); // TODO: 06.12.2016 Нужно наследовать VRCamera от Camera, а не только реализовать интерфейс? 
+//        surfaceHolder = vrSurfaceView.getHolder(); //*
+//        try {
+//            camera.setPreviewDisplay(surfaceHolder);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//
+//        camera.startPreview();
     }
 
     @Override
