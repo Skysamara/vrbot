@@ -11,22 +11,19 @@ import android.view.SurfaceHolder;
  */
 public class VRManager implements VRCamera.VRShotComplete {
     private VRSurfaceView vrSurfaceView;
-    private VRActivity vrActivity;
     private SurfaceHolder surfaceHolder;
     private VRCamera vrCamera;
 
 
-    public VRManager(VRActivity vrActivity) {
-        this.vrActivity = vrActivity;
-        vrSurfaceView = vrActivity.vrSurfaceView;
-//        surfaceHolder = vrSurfaceView.getHolder();
+    public VRManager(VRSurfaceView vrSurfaceView) {
+        this.vrSurfaceView = vrSurfaceView;
+        surfaceHolder = vrSurfaceView.getHolder();
     }
 
     public void openCamera() {
-        vrCamera = new VRCamera(vrActivity.vrSurfaceView);
-        vrCamera.open(); // TODO: 06.12.2016 ! До сюда доходит, далее ошибка коннекта к сервису камеры 
-//        vrCamera.registerCallback(this);
-//        vrActivity.vrSurfaceView.showMessage("VRManager.openCamera");
+        vrCamera = new VRCamera(vrSurfaceView);
+        vrCamera.open();
+        vrCamera.registerCallback(this);
     }
 
     public void shot() {
@@ -42,10 +39,5 @@ public class VRManager implements VRCamera.VRShotComplete {
     public void callBackReturn() {
         vrSurfaceView.showMessage("Callback!");
 
-
-    }
-
-    public void releaseCamera() {
-        vrCamera.releaseCamera();
     }
 }
