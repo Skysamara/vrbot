@@ -47,6 +47,7 @@ public class VRSurfaceView extends SurfaceView implements SurfaceHolder.Callback
 
     @Override
     public void onClick(View v) {
-        vrManager.shot(); // TODO: 06.12.2016 При быстром повторном нажатии вылетает ошибка. Нужно сначала проверить доступность камеры.  
+        vrManager.shot(); // TODO: 06.12.2016 При быстром повторном нажатии вылетает ошибка. Нужно сначала проверить доступность камеры.
+        //07.12.2016
     }
 }

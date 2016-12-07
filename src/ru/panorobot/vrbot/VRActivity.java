@@ -69,4 +69,5 @@ public class VRActivity extends Activity{
 //        editText.setHint(hint);
         buttonShoot.setHint(hint);
     }
+    //07.12.2016
 }
