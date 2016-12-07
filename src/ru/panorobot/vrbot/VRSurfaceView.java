@@ -1,5 +1,7 @@
 package ru.panorobot.vrbot;
 
+//07.12.2016
+
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Point;

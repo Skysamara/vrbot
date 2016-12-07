@@ -1,5 +1,7 @@
 package ru.panorobot.vrbot;
 
+//07.12.2016
+
 import android.graphics.Point;
 import android.util.Log;
 import android.widget.Toast;

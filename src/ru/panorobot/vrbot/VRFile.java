@@ -1,5 +1,7 @@
 package ru.panorobot.vrbot;
 
+//07.12.2016
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.text.SimpleDateFormat;

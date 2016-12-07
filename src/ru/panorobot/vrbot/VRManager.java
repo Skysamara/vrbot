@@ -1,5 +1,7 @@
 package ru.panorobot.vrbot;
 
+//07.12.2016
+
 import android.view.SurfaceHolder;
 
 /**
@@ -14,6 +16,7 @@ public class VRManager implements VRCamera.VRShotComplete {
     private SurfaceHolder surfaceHolder;
     private VRCamera vrCamera;
 
+    int shoots;
 
     public VRManager(VRSurfaceView vrSurfaceView) {
         this.vrSurfaceView = vrSurfaceView;
@@ -27,18 +30,34 @@ public class VRManager implements VRCamera.VRShotComplete {
     }
 
     public void shot() {
+
+//        vrCamera.shot(); //один кадр
+
+        shoots = 10;
+        takeNextPicture();
+    }
+
+    private void takeNextPicture(){
         vrCamera.shot();
     }
-    
+
+
     // Вызызвается VRCamera после окончания записи кадра на флешку
     public void onShotFinish() {
-        
+
     }
 
     @Override
-    public void callBackReturn() {
-        vrSurfaceView.showMessage("Callback!");
-        //07.12.2016
+    public void callBackReturn(String returnStatus) {
+
+        if (shoots == 0) {
+            vrSurfaceView.showMessage("Сфера снята!");
+        }
+        else {
+            vrSurfaceView.showMessage(returnStatus + " " + shoots);
+            shoots = shoots - 1;
+            vrCamera.shot();
+        }
 
     }
 }
