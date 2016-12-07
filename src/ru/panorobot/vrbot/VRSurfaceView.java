@@ -11,17 +11,13 @@ import android.widget.Toast;
 public class VRSurfaceView extends SurfaceView implements SurfaceHolder.Callback, View.OnClickListener{
     private Toast toast;
     private Canvas canvas;
-    private Context context;
-    private VRActivity vrActivity;
-//    private VRManager vrManager;
+    private VRManager vrManager;
 
 
     public VRSurfaceView(Context context) {
         super(context);
-        this.context = context;
-        vrActivity = (VRActivity) context;
         getHolder().addCallback(this);
-//        this.vrManager = vrManager;
+        vrManager = new VRManager(this);
     }
 
     public void showMessage(String text) {
@@ -35,10 +31,8 @@ public class VRSurfaceView extends SurfaceView implements SurfaceHolder.Callback
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
-//        setOnClickListener(this);
-
-//        showMessage("VRSurfaceView.surfaceCreated");
-        vrActivity.surfaceCreated();
+        setOnClickListener(this);
+        vrManager.openCamera();
     }
 
     @Override
@@ -53,6 +47,6 @@ public class VRSurfaceView extends SurfaceView implements SurfaceHolder.Callback
 
     @Override
     public void onClick(View v) {
-//        vrManager.shot();
+        vrManager.shot(); // TODO: 06.12.2016 При быстром повторном нажатии вылетает ошибка. Нужно сначала проверить доступность камеры.  
     }
 }
