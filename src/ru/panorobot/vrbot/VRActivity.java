@@ -16,9 +16,10 @@ import java.io.IOException;
 
 
 public class VRActivity extends Activity{
-    VRSurfaceView vrSurfaceView;
+    private VRSurfaceView vrSurfaceView;
 //    private EditText editText;
     private Button buttonShoot;
+    private VRManager vrManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +55,8 @@ public class VRActivity extends Activity{
         buttonShoot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showHint("Click button!");
+                vrManager.showHint("Click button!");
+                vrManager.shot();
             }
         });
 
@@ -70,5 +72,17 @@ public class VRActivity extends Activity{
     public void showHint(String hint){
 //        editText.setHint(hint);
         buttonShoot.setHint(hint);
+
+    }
+
+    public void startVRManager() {// TODO: 13.12.2016 Перенести в конструктор, передавать контекст. Singleton 
+        vrManager = new VRManager();
+        vrManager.vrActivity = this;
+        vrManager.vrSurfaceView = vrSurfaceView;
+        vrManager.surfaceHolder = vrSurfaceView.getHolder();
+    }
+
+    public void openCamera() {
+        vrManager.openCamera();
     }
 }

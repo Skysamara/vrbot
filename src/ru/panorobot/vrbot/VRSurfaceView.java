@@ -14,12 +14,14 @@ public class VRSurfaceView extends SurfaceView implements SurfaceHolder.Callback
     private Toast toast;
     private Canvas canvas;
     private VRManager vrManager;
+    private VRActivity vrActivity;
 
 
     public VRSurfaceView(Context context) {
         super(context);
         getHolder().addCallback(this);
-        vrManager = new VRManager(this);
+        vrActivity = (VRActivity) context;
+
     }
 
     public void showMessage(String text) {
@@ -34,7 +36,8 @@ public class VRSurfaceView extends SurfaceView implements SurfaceHolder.Callback
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
         setOnClickListener(this);
-        vrManager.openCamera();
+        vrActivity.startVRManager();
+        vrActivity.openCamera();
     }
 
     @Override
@@ -49,7 +52,7 @@ public class VRSurfaceView extends SurfaceView implements SurfaceHolder.Callback
 
     @Override
     public void onClick(View v) {
-        vrManager.shot(); // TODO: 06.12.2016 При быстром повторном нажатии вылетает ошибка. Нужно сначала проверить доступность камеры.
+//        vrManager.shot(); // TODO: 06.12.2016 При быстром повторном нажатии вылетает ошибка. Нужно сначала проверить доступность камеры.
         //07.12.2016
     }
 }

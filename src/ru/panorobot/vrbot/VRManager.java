@@ -12,15 +12,17 @@ import android.view.SurfaceHolder;
  *
  */
 public class VRManager implements VRCamera.VRShotComplete {
-    private VRSurfaceView vrSurfaceView;
-    private SurfaceHolder surfaceHolder;
+    public VRSurfaceView vrSurfaceView;
+    public SurfaceHolder surfaceHolder;
+    public VRActivity vrActivity;
     private VRCamera vrCamera;
 
     int shoots;
 
-    public VRManager(VRSurfaceView vrSurfaceView) {
+//    public VRManager(VRSurfaceView vrSurfaceView) {
+    public VRManager() {
         this.vrSurfaceView = vrSurfaceView;
-        surfaceHolder = vrSurfaceView.getHolder();
+//        surfaceHolder = vrSurfaceView.getHolder();
     }
 
     public void openCamera() {
@@ -51,13 +53,16 @@ public class VRManager implements VRCamera.VRShotComplete {
     public void callBackReturn(String returnStatus) {
 
         if (shoots == 0) {
-            vrSurfaceView.showMessage("Сфера снята!");
+            showHint("Сфера снята!");
         }
         else {
             vrSurfaceView.showMessage(returnStatus + " " + shoots);
             shoots = shoots - 1;
             vrCamera.shot();
         }
+    }
 
+    public void showHint(String s) {
+        vrActivity.showHint(s);
     }
 }
