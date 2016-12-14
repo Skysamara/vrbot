@@ -1,58 +1,38 @@
 package ru.panorobot.vrbot;
 
-//07.12.2016
-
-import android.graphics.Point;
-import android.util.Log;
-import android.widget.Toast;
+import android.bluetooth.BluetoothAdapter;
+import android.content.Context;
 
 /**
- * Интерфейс к головке.
- * По BT передаем направления вращениz. Формат комманд:
- * #pXX -
+ * 1. Подключает Bluetooth
+ * 2. Передает команды FRSfrs. Обратной передачи пока нет
+ *
  */
-public class VRBot implements Runnable{
-    public interface VRMove {
-        void onVRBotMoveComplete();
+public class VRBot {
+    private static final int REQUEST_ENABLE_BT = 0;
+    private VRManager vrManager;
+
+    public BluetoothAdapter btAdapter;
+
+
+    public VRBot(Context context){
+
+//        btAdapter = BluetoothAdapter.getDefaultAdapter();
+//        mytext = (TextView) findViewById(R.id.txtrobot);
+//
+//        if (btAdapter != null){
+//            if (btAdapter.isEnabled()){
+//                mytext.setText("Bluetooth включен. Все отлично.");
+//            }else
+//            {
+//                Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+//                startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
+//            }
+//
+//        }else
+//        {
+//            mytext.setText("Bluetooth отсутствует");
+//        }
+    }
     }
 
-    interface VRBotConnect{
-        void onVRBotConnected();
-    }
-
-
-
-    VRMove onVRMoveComplete;
-
-    void registerCallback(VRMove onVRMoveComplete){
-        this.onVRMoveComplete = onVRMoveComplete;
-    }
-
-    @Override
-    public void run() {
-//        Toast.makeText(this, "Подключаем робота", Toast.LENGTH_SHORT).show();
-//        Log.d("LOGG", "Подключаем робота");
-        System.out.println("Подключаем робота");
-    }
-
-    public void runTo(Point p){
-/**
- * Переместить в заданную точку взора.
- * p(x,y) углы по пан и тильт
- */
-    }
-
-    public void sendCommand(String s){
-        /**
-         * Послать команду (#xYY)
-         * #x - команда (Подключить, отключить, переместить, узнать заряд и т.д.)
-         * YY - аргумент
-         */
-    }
-
-    public void connect(){
-        // Подключаем Bluetooth
-    }
-
-
-}

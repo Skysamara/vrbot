@@ -67,6 +67,7 @@ public class VRActivity extends Activity{
 //        layout.addView(editText);
         layout.addView(buttonShoot);
         setContentView(layout);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON, WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON); // Не выключать подсветку
     }
 
     public void showHint(String hint){
