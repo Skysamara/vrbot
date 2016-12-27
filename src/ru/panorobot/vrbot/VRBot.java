@@ -8,12 +8,15 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 
+import java.util.List;
+
 /**
  * 1.
  * 2.
  *
  */
 public class VRBot implements SensorEventListener{
+    private final Activity mActivity;
     private pos mPos;   // Текущая позиция: pan, tilt. Сюда непрерывно пишем показания датчика
     private pos mNextPos;   // Следующая позиция. Устанавливается Менеджером.
     private boolean mIsBluetoothConnected;  // Блютуз подключен
@@ -48,7 +51,8 @@ public class VRBot implements SensorEventListener{
      * @param event the {@link SensorEvent SensorEvent}.
      */
     @Override
-    public void onSensorChanged(SensorEvent event) {
+    public void onSensorChanged(SensorEvent event) {    // Преобразуем параметры к позиции (Pos)
+
 
     }
 
@@ -76,7 +80,8 @@ public class VRBot implements SensorEventListener{
     }
 
 //    Конструктор
-    public VRBot(Context context){
+    public VRBot(Activity act){
+        mActivity = act;    // getSystemService - контекстный метод, нужно передать, например, Activity
         mIsBluetoothConnected = false;
         mIsRunning = false;
         mIsMoveComplete = true;
@@ -85,9 +90,18 @@ public class VRBot implements SensorEventListener{
         mPos = new pos(0, 0);
         mNextPos = new pos(0, 0);
 
-//        Инициализируем акселерометр
-        mSensorManager = (SensorManager) getSystemService(Activity.SENSOR_SERVICE);
-
+//        Инициализируем датчик ориентации
+        mSensorManager = (SensorManager) mActivity.getSystemService(Context.SENSOR_SERVICE);
+        List<Sensor> sensors = mSensorManager.getSensorList(Sensor.TYPE_ALL);
+        if (sensors.size() > 0){
+            for (Sensor sensor : sensors) {
+                if (sensor.getType() == Sensor.TYPE_ORIENTATION) {
+                    if(mOrientationSensor == null){
+                        mOrientationSensor = sensor;
+                    }
+                }
+            }
+        }
 
 //        btAdapter = BluetoothAdapter.getDefaultAdapter();
 //        mytext = (TextView) findViewById(R.id.txtrobot);
@@ -117,43 +131,46 @@ public class VRBot implements SensorEventListener{
         }
     }
 
-    public void GotoPos(pos pos){
+    public void GotoPos(pos pos){   // Вызывается менеджером
         mNextPos = pos;
         mIsRunning = true;
         mIsMoveComplete = false;
+    }
 
-        while (!mIsMoveComplete){
-            if (emergencyStop){
-//                Срочная остановка
-//                send('S');
-//                send('s');
-            }
+    private void onSensorEvent(){   // Вызывать по событию датчика ориентации
+        if ((!mIsMoveComplete) && mIsRunning){
             sendCommand();  // Вычислить команды FRSfrs и послать через блютуз
         }
-
-//        send('S');    // Возможно, стоит послать несколько раз
-//        send('s');    // если будут ошибки блютуза
-        mIsRunning = false;
-        mIsMoveComplete = true;
+        else {
+            sendBt('S');    // Возможно, стоит послать несколько раз
+            sendBt('s');    // если будут ошибки блютуза
+            mIsRunning = false;
+            mIsMoveComplete = true;
+//        Запустить калибровку гироскопа
 //        Как-то сообщить менеджеру, что позиция достигнута. Возможно коллбэком или просто вызовом метода
-
-
+        }
     }
 
     private void sendCommand() {
+        // Вычисляем команду в зависимости от текущей и следующей позиций
         // Здесь сравнивать с Дельтой не надо. Сравнение было перед вызовом этой процедуры из GotoPos
         if(mNextPos.mP > mPos.mP){
-//            send('F');
+            sendBt('F');
         }
         if(mNextPos.mP < mPos.mP){
-//            send('R');
+            sendBt('R');
         }
         if(mNextPos.mT > mPos.mT){
-//            send('f');
+            sendBt('f');
         }
         if(mNextPos.mT < mPos.mT){
-//            send('r');
+            sendBt('r');
         }
+    }
+
+    private void sendBt(char command){
+//        Непосредственно посылаем FRSfrs символ по блютузу
+
     }
 }
 

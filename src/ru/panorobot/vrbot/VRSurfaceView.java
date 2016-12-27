@@ -5,12 +5,13 @@ package ru.panorobot.vrbot;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Point;
+import android.opengl.GLSurfaceView;
 import android.util.AttributeSet;
 import android.view.*;
 import android.view.View.OnTouchListener;
 import android.widget.Toast;
 
-public class VRSurfaceView extends SurfaceView implements SurfaceHolder.Callback, View.OnClickListener{
+public class VRSurfaceView extends GLSurfaceView implements SurfaceHolder.Callback, View.OnClickListener{
     private Toast toast;
     private Canvas canvas;
     private VRManager vrManager;
