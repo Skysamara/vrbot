@@ -11,17 +11,20 @@ import android.view.SurfaceHolder;
  * 2.2. Съемка
  *
  */
-public class VRManager implements VRCamera.VRShotComplete {
+public class VRManager implements VRCamera.VRShotComplete, VRBot.MoveComplete {
     public VRSurfaceView vrSurfaceView;
     public SurfaceHolder surfaceHolder;
     public VRActivity vrActivity;
     private VRCamera vrCamera;
+    private VRBot mVRBot;
+    private VRSphere vrSphere;
+
 
     int shoots;
 
 //    public VRManager(VRSurfaceView vrSurfaceView) {
     public VRManager() {
-        this.vrSurfaceView = vrSurfaceView;
+        this.vrSurfaceView = vrSurfaceView; // Что-то не так
 //        surfaceHolder = vrSurfaceView.getHolder();
     }
 
@@ -32,10 +35,17 @@ public class VRManager implements VRCamera.VRShotComplete {
     }
 
     public void shot() {
+        // Снимаем сферу
 
 //        vrCamera.shot(); //один кадр
+        vrSphere = new VRSphere(5,10);
 
-        shoots = 10;
+        while (!vrSphere.completed){
+            takeNextPicture(); //
+        }
+
+
+        shoots = 3;
         takeNextPicture();
     }
 

@@ -69,6 +69,12 @@ public class VRBot implements SensorEventListener{
 
     }
 
+    public interface MoveComplete {
+        // TODO: 28.02.2017 Написать по аналогии с камерой
+
+
+    }
+
     public class pos{
         int mP;
         int mT;

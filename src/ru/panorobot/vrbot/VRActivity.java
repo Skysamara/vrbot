@@ -76,7 +76,7 @@ public class VRActivity extends Activity{
 
     }
 
-    public void startVRManager() {// TODO: 13.12.2016 Перенести в конструктор, передавать контекст. Singleton 
+    public void startVRManager() {// TODO: 13.12.2016 Перенести в конструктор, передавать контекст. Singleton
         vrManager = new VRManager();
         vrManager.vrActivity = this;
         vrManager.vrSurfaceView = vrSurfaceView;
