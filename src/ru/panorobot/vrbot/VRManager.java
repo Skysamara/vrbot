@@ -35,7 +35,7 @@ public class VRManager implements VRCamera.VRShotComplete {
 
 //        vrCamera.shot(); //один кадр
 
-        shoots = 10;
+        shoots = 3;
         takeNextPicture();
     }
 
