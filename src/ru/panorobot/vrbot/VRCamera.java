@@ -9,7 +9,7 @@ import android.view.SurfaceHolder;
 import java.io.IOException;
 
 public class VRCamera implements PictureCallback{
-    interface VRShotComplete {
+    public interface VRShotComplete {
         void callBackReturn(String returnStatus);
     }
 
