@@ -2,6 +2,7 @@ package ru.panorobot.vrbot;
 
 //07.12.2016
 
+import android.content.Context;
 import android.view.SurfaceHolder;
 
 /**
@@ -12,20 +13,20 @@ import android.view.SurfaceHolder;
  *
  */
 public class VRManager implements VRCamera.VRShotComplete, VRBot.MoveComplete {
-    public VRSurfaceView vrSurfaceView;
-    public SurfaceHolder surfaceHolder;
-    public VRActivity vrActivity;
+    private VRSurfaceView vrSurfaceView;
+    private SurfaceHolder surfaceHolder;
+    private VRActivity vrActivity;
     private VRCamera vrCamera;
     private VRBot mVRBot;
     private VRSphere vrSphere;
 
 
-    int shoots;
+    int shoots; // Временно
 
-//    public VRManager(VRSurfaceView vrSurfaceView) {
-    public VRManager() {
-        this.vrSurfaceView = vrSurfaceView; // Что-то не так
-//        surfaceHolder = vrSurfaceView.getHolder();
+    public VRManager(Context context) {
+        vrActivity = (VRActivity) context;
+        vrSurfaceView = vrActivity.getVrSurfaceView();
+        surfaceHolder = vrSurfaceView.getHolder();
     }
 
     public void openCamera() {

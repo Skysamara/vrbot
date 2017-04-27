@@ -36,9 +36,14 @@ public class VRSurfaceView extends GLSurfaceView implements SurfaceHolder.Callba
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
-        setOnClickListener(this);
-        vrActivity.startVRManager();
-        vrActivity.openCamera();
+        setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                vrActivity.onSurfaceCreated(); // TODO: 28.04.2017  
+            }
+        });
+//        vrActivity.startVRManager();
+//        vrActivity.openCamera();
     }
 
     @Override
