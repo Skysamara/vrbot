@@ -15,7 +15,7 @@ import java.util.List;
  * 2.
  *
  */
-public class VRBot implements SensorEventListener{
+public class VRBotOld implements SensorEventListener{
     private final Activity mActivity;
     private pos mPos;   // Текущая позиция: pan, tilt. Сюда непрерывно пишем показания датчика
     private pos mNextPos;   // Следующая позиция. Устанавливается Менеджером.
@@ -32,7 +32,7 @@ public class VRBot implements SensorEventListener{
     Sensor mOrientationSensor; //TYPE_ROTATION_VECTOR, TYPE_ORIENTATION
 
     private static final int REQUEST_ENABLE_BT = 0;
-    private VRManager vrManager;
+    private VRManager mVrManager;
 
     public BluetoothAdapter btAdapter;
 
@@ -86,7 +86,7 @@ public class VRBot implements SensorEventListener{
     }
 
 //    Конструктор
-    public VRBot(Activity act){
+    public VRBotOld(Activity act){
         mActivity = act;    // getSystemService - контекстный метод, нужно передать, например, Activity
         mIsBluetoothConnected = false;
         mIsRunning = false;

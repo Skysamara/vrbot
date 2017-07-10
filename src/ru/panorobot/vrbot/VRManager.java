@@ -4,6 +4,7 @@ package ru.panorobot.vrbot;
 
 import android.content.Context;
 import android.view.SurfaceHolder;
+import android.widget.Toast;
 
 /**
  * 1. Открывает главное окно с кнопкой Старт
@@ -12,14 +13,13 @@ import android.view.SurfaceHolder;
  * 2.2. Съемка
  *
  */
-public class VRManager implements VRCamera.VRShotComplete, VRBot.MoveComplete {
+public class VRManager implements VRCamera.VRShotComplete, VRBotOld.MoveComplete {
     private VRSurfaceView vrSurfaceView;
     private SurfaceHolder surfaceHolder;
     private VRActivity vrActivity;
     private VRCamera vrCamera;
-    private VRBot mVRBot;
+    private VRBotOld mVRBot;
     private VRSphere vrSphere;
-
 
     int shoots; // Временно
 
@@ -29,25 +29,27 @@ public class VRManager implements VRCamera.VRShotComplete, VRBot.MoveComplete {
         surfaceHolder = vrSurfaceView.getHolder();
     }
 
+
     public void openCamera() {
         vrCamera = new VRCamera(vrSurfaceView);
         vrCamera.open();
         vrCamera.registerCallback(this);
     }
 
-    public void shot() {
+    public void shot(Context context) {
         // Снимаем сферу
+        Toast.makeText(context, "123",Toast.LENGTH_SHORT).show();
 
-//        vrCamera.shot(); //один кадр
-        vrSphere = new VRSphere(5,10);
-
-        while (!vrSphere.completed){
-            takeNextPicture(); //
-        }
-
-
-        shoots = 3;
-        takeNextPicture();
+        vrCamera.shot(); //один кадр
+//        vrSphere = new VRSphere(5,10);
+//
+//        while (!vrSphere.completed){
+//            takeNextPicture(); //
+//        }
+//
+//
+//        shoots = 3;
+//        takeNextPicture();
     }
 
     private void takeNextPicture(){

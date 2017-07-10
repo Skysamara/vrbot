@@ -4,17 +4,14 @@ package ru.panorobot.vrbot;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Point;
 import android.opengl.GLSurfaceView;
-import android.util.AttributeSet;
 import android.view.*;
-import android.view.View.OnTouchListener;
 import android.widget.Toast;
 
 public class VRSurfaceView extends GLSurfaceView implements SurfaceHolder.Callback, View.OnClickListener{
     private Toast toast;
     private Canvas canvas;
-    private VRManager vrManager;
+    private VRManager mVrManager;
     private VRActivity vrActivity;
 
 
@@ -36,14 +33,15 @@ public class VRSurfaceView extends GLSurfaceView implements SurfaceHolder.Callba
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
-        setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                vrActivity.onSurfaceCreated(); // TODO: 28.04.2017  
-            }
-        });
+//        setOnClickListener(new OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                vrActivity.onSurfaceCreated(); // TODO: 28.04.2017
+//            }
+//        });
+
 //        vrActivity.startVRManager();
-//        vrActivity.openCamera();
+        vrActivity.openCamera();
     }
 
     @Override
@@ -58,7 +56,7 @@ public class VRSurfaceView extends GLSurfaceView implements SurfaceHolder.Callba
 
     @Override
     public void onClick(View v) {
-//        vrManager.shot(); // TODO: 06.12.2016 При быстром повторном нажатии вылетает ошибка. Нужно сначала проверить доступность камеры.
+//        mVrManagerOld.shot(); // TODO: 06.12.2016 При быстром повторном нажатии вылетает ошибка. Нужно сначала проверить доступность камеры.
         //07.12.2016
     }
 }
